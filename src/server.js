@@ -33,6 +33,18 @@ app.post('/tasks', (req, res) => {
 });
 
 
+app.delete('/tasks/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const taskIndex = tasks.findIndex(t => t.id === id);
+  
+  if (taskIndex === -1) {
+    return res.status(404).json({ error: 'Task not found' });
+  }
+  
+  tasks.splice(taskIndex, 1);
+  res.status(204).send();
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
