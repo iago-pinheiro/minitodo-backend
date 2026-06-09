@@ -1,0 +1,9 @@
+services:
+  api:
+    build: .
+    container_name: minitodo-api
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - CORS_ORIGIN_CODESPACES=${CORS_ORIGIN_CODESPACES}
