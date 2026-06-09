@@ -13,6 +13,15 @@ app.get('/', (req, res) => {
   res.send('Mini To-Do API is running!');
 });
 
+app.get('/v1', (req, res) => {
+  const now = new Date();
+  const chamadaEm = now.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+  res.json({
+    message: "Api v1 respondendo no container docker...",
+    chamada_em: chamadaEm
+  });
+});
+
 app.get('/tasks', (req, res) => {
   res.json(tasks);
 });
