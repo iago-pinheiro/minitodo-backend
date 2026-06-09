@@ -2,7 +2,17 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: [
+    "https://minitodo-frontend.vercel.app",
+    process.env.CORS_ORIGIN_CODESPACES
+  ].filter(Boolean),
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 let tasks = [
